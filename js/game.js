@@ -18,6 +18,8 @@
         {x:650, y:150}
 			];
 
+			var bullets = [];
+
 			function displayEnemies() {
 				var output='';
 				for (var i = 0; i < enemies.length; i++) {
@@ -37,6 +39,8 @@
 				displayHero();
 				moveEnemies();
 				displayEnemies();
+				displayBullets();
+				moveBullets();
 			}
 
 			function moveEnemies() {
@@ -49,6 +53,24 @@
             }
 					}
 			}
+			function moveBullets() {
+					for(var i = 0; i < bullets.length; i++) {
+						bullets[i].y -=5;
+
+          if(bullets[i].y < 10) {
+                bullets[i].y = 0;
+                bullets[i].x = 0;
+            }
+					}
+			}
+			function displayBullets() {
+				var output = '';
+				for(var i = 0; i < bullets.length; i++ ) {
+					output += "<div class='bullet' style= ' top:" + bullets[i].y + "px; left:" + bullets[i].x + "px;'></div>";
+				}
+				document.getElementById('bullets').innerHTML = output;
+			}
+
 			setInterval(gameLoop, 50);
 
 			document.onkeydown = function(e) {
@@ -64,10 +86,15 @@
 				if (e.keyCode == 40) {
 					hero.y += 10;
 				}
+				if (e.keyCode == 32) {
+					bullets.push({x: hero.x + 5 , y: hero.y - 20});
+				}
 				displayHero();
 			}
 
 			gameLoop();
+
+
 
 			// displayHero();
 			// displayEnemies();
