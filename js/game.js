@@ -76,7 +76,6 @@
 
 							if(Math.abs(bullets[i].y - enemies[j].y) < 7 && Math.abs(bullets[i].x - enemies[j].x) < 7 ) {
 							// alert ("dead enemy");
-								// enemies[j].setAttribute("class","dead_enemy");
 							console.log('bullet', i, 'and enemy', j, 'colided');
 							score +=50;
 							updateScore();
@@ -84,13 +83,17 @@
 							enemies[j] = enemies[enemies.length-1];
 							enemies.pop();
 
-							
+							var output = "<div class='explosions' style= ' top:" + bullets[i].y + "px; left:" + bullets[i].x + "px;'></div>";
+							$('#explosion').html(output);
+							$('.explosions').fadeOut("slow");
 
 							console.log(enemies);
 				  }
 				 }
 				}
 			}
+
+
 			function updateScore() {
 				document.getElementById('score').innerHTML = score;
 			}

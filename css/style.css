@@ -24,12 +24,12 @@ body {
   position: absolute;
 }
 
-.explosion {
+.explosions {
   background: url('../img/1942.gif');
   width: 28px;
   height: 28px;
   background-position: -114px -34px;
-  visibility: hidden;
+  position: absolute;
 }
 .bullet {
   background: url('../img/1942.gif');
