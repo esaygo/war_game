@@ -24,6 +24,13 @@ body {
   position: absolute;
 }
 
+.explosion {
+  background: url('../img/1942.gif');
+  width: 28px;
+  height: 28px;
+  background-position: -114px -34px;
+  visibility: hidden;
+}
 .bullet {
   background: url('../img/1942.gif');
   background-position: -185px -400px;
@@ -41,4 +48,8 @@ body {
   padding: 10px;
   font-size: 30px;
   font-family: Arial;
+}
+
+.dead_enemy {
+  display: none;
 }

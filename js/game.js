@@ -10,6 +10,9 @@
 				y: 500
 
 			}
+
+			var score = 0;
+
 			var enemies = [
 				{x:50, y:50},
 				{x:250, y:80},
@@ -41,6 +44,8 @@
 				displayEnemies();
 				displayBullets();
 				moveBullets();
+				detectCollision();
+				updateScore();
 			}
 
 			function moveEnemies() {
@@ -57,12 +62,39 @@
 					for(var i = 0; i < bullets.length; i++) {
 						bullets[i].y -=5;
 
-          if(bullets[i].y < 10) {
-                bullets[i].y = 0;
-                bullets[i].x = 0;
-            }
+          if(bullets[i].y < 0) {
+                bullets[i] = bullets[bullets.length-1];
+                bullets.pop();
 					}
+
+				}
 			}
+
+			function detectCollision() {
+				for(var i = 0; i < bullets.length; i++) {
+					for(var j = 0; j < enemies.length; j++) {
+
+							if(Math.abs(bullets[i].y - enemies[j].y) < 7 && Math.abs(bullets[i].x - enemies[j].x) < 7 ) {
+							// alert ("dead enemy");
+								// enemies[j].setAttribute("class","dead_enemy");
+							console.log('bullet', i, 'and enemy', j, 'colided');
+							score +=50;
+							updateScore();
+
+							enemies[j] = enemies[enemies.length-1];
+							enemies.pop();
+
+							
+
+							console.log(enemies);
+				  }
+				 }
+				}
+			}
+			function updateScore() {
+				document.getElementById('score').innerHTML = score;
+			}
+
 			function displayBullets() {
 				var output = '';
 				for(var i = 0; i < bullets.length; i++ ) {
