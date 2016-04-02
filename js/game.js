@@ -127,21 +127,39 @@
 		  setInterval(gameLoop, 50);
 
 		  document.onkeydown = function(e) {
+		    if (hero.x > 10 && hero.x < 950) {
+					console.log(hero.x);
+		      if (e.keyCode == 37) {
+		        hero.x -= 10;
+		      }
+		      if (e.keyCode == 39) {
+		        hero.x += 10;
+		      }
+		    } else {
+					console.log(hero.x);
+		      if (hero.x <= 10) {
+		        hero.x += 10;
+		      }
+		      if (hero.x >= 950) {
+		        hero.x -= 10;
+		      }
+		    }
+		    if (hero.y < 520 && hero.y > 20) {
 
-		    if (e.keyCode == 37) {
-		      hero.x -= 10;
-		    }
-		    if (e.keyCode == 39) {
-		      hero.x += 10;
-		    }
-		    if (e.keyCode == 38) {
-		      hero.y -= 10;
-		    }
-				if(hero.y < 520) {
-		    if (e.keyCode == 40) {
-		      hero.y += 10;
-		    }
-			}
+		      if (e.keyCode == 38) {
+		        hero.y -= 10;
+		      }
+		      if (e.keyCode == 40) {
+		        hero.y += 10;
+		      }
+		    } else {
+					if(hero.y >= 520) {
+						hero.y -= 10;
+					}
+					if(hero.y <= 20) {
+						hero.y += 10;
+					}
+				}
 		    if (e.keyCode == 32) {
 		      bullets.push({
 		        x: hero.x + 5,
